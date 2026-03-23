@@ -34,6 +34,32 @@ function escapeHtml(text) {
     .replaceAll("'", '&#39;');
 }
 
+function stayLabel(anchor) {
+  const map = {
+    mirador_plaza_escalon: 'Near Mirador Plaza',
+    hotel_michanti_chiltiupan: 'Near Hotel Michanti',
+    las_veraneras_acajutla: 'Near Las Veraneras',
+    mi_tierra_airport: 'Near Mi Tierra Airport',
+  };
+  return map[anchor] || '';
+}
+
+function isBirding(x) {
+  const hay = [x.title, x.summary, x.why_text, x.categories, x.category_primary]
+    .filter(Boolean)
+    .join(' ')
+    .toLowerCase();
+  return ['bird', 'motmot', 'trogon', 'hummingbird', 'wetland', 'mangrove'].some(t => hay.includes(t));
+}
+
+function isMotmot(x) {
+  const hay = [x.title, x.summary, x.why_text, x.categories]
+    .filter(Boolean)
+    .join(' ')
+    .toLowerCase();
+  return hay.includes('motmot');
+}
+
 function contactButtons(x) {
   const bits = [];
   if (x.contact_whatsapp) {
@@ -128,10 +154,14 @@ async function load() {
     const cat = $('#category').value;
     const area = $('#area').value;
     const sort = $('#sort').value;
+    const quick = $('#quick-filter').value;
 
     let filtered = experiences.filter(x => {
       if (cat && x.category_primary !== cat) return false;
       if (area && x.area_base !== area) return false;
+      if (quick === 'birding' && !isBirding(x)) return false;
+      if (quick === 'motmots' && !isMotmot(x)) return false;
+      if (quick === 'near-stays' && !stayLabel(x.nearest_anchor)) return false;
       if (!q) return true;
       const hay = [x.title, x.summary, x.why_text, x.categories, x.area_base, x.contact_email, x.contact_phone, x.contact_whatsapp]
         .filter(Boolean)
@@ -158,12 +188,16 @@ async function load() {
       const distanceBadge = x.distanceFromUserKm != null
         ? `<span class="pill distance">${x.distanceFromUserKm.toFixed(1)} km from you</span>`
         : '';
+      const stayBadge = stayLabel(x.nearest_anchor)
+        ? `<span class="pill stay">${stayLabel(x.nearest_anchor)}</span>`
+        : '';
       return `
-      <article class="card ${hasContact ? 'has-contact' : ''}">
+      <article class="card ${hasContact ? 'has-contact' : ''} ${isBirding(x) ? 'birding-card' : ''}">
         <div class="meta">
           <span class="pill category">${escapeHtml(x.category_primary || 'place')}</span>
           <span class="pill score">score ${fmt(x.score)}</span>
           ${distanceBadge}
+          ${stayBadge}
           ${x.drive_minutes ? `<span class="pill">${x.drive_minutes} min drive</span>` : ''}
           ${x.area_base ? `<span class="pill area">${escapeHtml(x.area_base)}</span>` : ''}
         </div>
@@ -206,6 +240,7 @@ async function load() {
     $('#search').addEventListener(evt, render);
     $('#category').addEventListener(evt, render);
     $('#area').addEventListener(evt, render);
+    $('#quick-filter').addEventListener(evt, render);
   });
   $('#sort').addEventListener('change', (e) => {
     state.sortMode = e.target.value;

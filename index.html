@@ -29,8 +29,14 @@
     </section>
 
     <section class="panel" style="padding:16px;">
-      <div class="controls controls-4">
+      <div class="controls controls-5">
         <input id="search" type="search" placeholder="Search title, summary, tags, area, contact…">
+        <select id="quick-filter">
+          <option value="">All views</option>
+          <option value="birding">Birding</option>
+          <option value="motmots">MotMots</option>
+          <option value="near-stays">Near stays</option>
+        </select>
         <select id="category"><option value="">All categories</option></select>
         <select id="area"><option value="">All areas</option></select>
         <select id="sort">
@@ -40,7 +46,7 @@
         </select>
       </div>
       <div class="toolbar toolbar-stack">
-        <div class="subtitle toolbar-copy">Browse top featured rows, then jump straight into WhatsApp, phone, email, or source pages.</div>
+        <div class="subtitle toolbar-copy">Birding is now easier to browse: use Birding, MotMots, Near stays, or Closest to me.</div>
         <div class="location-row">
           <button id="location-button" class="button secondary-button" type="button">Use my location</button>
           <span id="location-status" class="location-status">Location off</span>
