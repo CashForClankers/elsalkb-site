@@ -29,13 +29,22 @@
     </section>
 
     <section class="panel" style="padding:16px;">
-      <div class="controls">
+      <div class="controls controls-4">
         <input id="search" type="search" placeholder="Search title, summary, tags, area, contact…">
         <select id="category"><option value="">All categories</option></select>
         <select id="area"><option value="">All areas</option></select>
+        <select id="sort">
+          <option value="default">Default order</option>
+          <option value="score">Highest score</option>
+          <option value="closest">Closest to me</option>
+        </select>
       </div>
-      <div class="toolbar">
+      <div class="toolbar toolbar-stack">
         <div class="subtitle toolbar-copy">Browse top featured rows, then jump straight into WhatsApp, phone, email, or source pages.</div>
+        <div class="location-row">
+          <button id="location-button" class="button secondary-button" type="button">Use my location</button>
+          <span id="location-status" class="location-status">Location off</span>
+        </div>
         <div id="count" class="kicker" style="font-size:11px;"></div>
       </div>
     </section>
