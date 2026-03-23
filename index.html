@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ElSalKB</title>
+  <meta name="description" content="Simple, static trip knowledge base for El Salvador.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="container">
+    <section class="hero">
+      <div class="kicker">ElSalKB</div>
+      <h1>Beautiful trip data, no backend.</h1>
+      <div class="subtitle">
+        A static, GitHub-hosted view over the El Salvador trip knowledge base. Fast, cheap, simple,
+        and easy to evolve later into itinerary state, feedback, and contact enrichment.
+      </div>
+      <div id="trip" class="subtitle"></div>
+      <div class="stats">
+        <div class="stat"><b id="stat-experiences">—</b>Total experiences</div>
+        <div class="stat"><b id="stat-featured">—</b>Featured on site</div>
+        <div class="stat"><b id="stat-areas">—</b>Areas</div>
+        <div class="stat"><b id="stat-contacts">—</b>Rows with contact info</div>
+      </div>
+    </section>
+
+    <section class="panel" style="padding:16px;">
+      <div class="controls">
+        <input id="search" type="search" placeholder="Search title, summary, tags, area…">
+        <select id="category"><option value="">All categories</option></select>
+        <select id="area"><option value="">All areas</option></select>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:0 4px 8px;">
+        <div class="subtitle" style="font-size:.95rem;">Featured rows are sorted by blended average score for a clean first pass.</div>
+        <div id="count" class="kicker" style="font-size:11px;"></div>
+      </div>
+    </section>
+
+    <section id="grid" class="grid" style="margin-top:18px;"></section>
+
+    <footer>
+      Built as a static export from SQLite → JSON → plain HTML/CSS/JS. Deploy target: GitHub Pages.
+      <br>
+      Notes live in <a class="subtle" href="./NOTES.md">NOTES.md</a> and the repo <a class="subtle" href="./README.md">README</a>.
+    </footer>
+  </main>
+  <script src="./app.js"></script>
+</body>
+</html>
