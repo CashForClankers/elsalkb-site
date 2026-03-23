@@ -14,27 +14,28 @@
   <main class="container">
     <section class="hero">
       <div class="kicker">ElSalKB</div>
-      <h1>Beautiful trip data, no backend.</h1>
+      <h1>Beautiful trip data, one tap from action.</h1>
       <div class="subtitle">
-        A static, GitHub-hosted view over a sanitized El Salvador knowledge base. Fast, cheap, simple,
-        and easy to evolve later into better filtering, maps, and richer public-safe summaries.
+        A static, GitHub-hosted view over the El Salvador trip knowledge base. Fast, cheap, searchable,
+        and now optimized for actually reaching the people and places you want.
       </div>
       <div id="trip" class="subtitle"></div>
       <div class="stats">
         <div class="stat"><b id="stat-experiences">—</b>Total experiences</div>
         <div class="stat"><b id="stat-featured">—</b>Featured on site</div>
         <div class="stat"><b id="stat-areas">—</b>Areas</div>
-              </div>
+        <div class="stat"><b id="stat-contacts">—</b>Rows with direct contact</div>
+      </div>
     </section>
 
     <section class="panel" style="padding:16px;">
       <div class="controls">
-        <input id="search" type="search" placeholder="Search title, summary, tags, area…">
+        <input id="search" type="search" placeholder="Search title, summary, tags, area, contact…">
         <select id="category"><option value="">All categories</option></select>
         <select id="area"><option value="">All areas</option></select>
       </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:0 4px 8px;">
-        <div class="subtitle" style="font-size:.95rem;">Featured rows are sorted by blended average score for a clean first pass.</div>
+      <div class="toolbar">
+        <div class="subtitle toolbar-copy">Browse top featured rows, then jump straight into WhatsApp, phone, email, or source pages.</div>
         <div id="count" class="kicker" style="font-size:11px;"></div>
       </div>
     </section>
