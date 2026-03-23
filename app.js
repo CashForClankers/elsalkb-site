@@ -11,7 +11,6 @@ async function load() {
   $('#stat-experiences').textContent = meta.experienceCount.toLocaleString();
   $('#stat-featured').textContent = meta.featuredCount.toLocaleString();
   $('#stat-areas').textContent = meta.areaCount.toLocaleString();
-  $('#stat-contacts').textContent = meta.contactCoverage.toLocaleString();
 
   const cats = [...new Set(experiences.map(x => x.category_primary).filter(Boolean))].sort();
   const areas = [...new Set(experiences.map(x => x.area_base).filter(Boolean))].sort();
@@ -31,7 +30,6 @@ async function load() {
     });
     $('#count').textContent = `${filtered.length} shown`;
     $('#grid').innerHTML = filtered.map(x => {
-      const contact = x.contact_whatsapp || x.contact_phone || x.contact_email;
       const tags = (x.categories || '').split(',').map(s => s.trim()).filter(Boolean).slice(0,4);
       return `
       <article class="card">
@@ -47,7 +45,6 @@ async function load() {
         ${tags.length ? `<div class="tags">${tags.map(t => `<span class="pill">${t}</span>`).join('')}</div>` : ''}
         <div class="links">
           ${x.source_url ? `<a class="button" href="${x.source_url}" target="_blank" rel="noreferrer">Source</a>` : ''}
-          ${contact ? `<span class="pill">contact: ${contact}</span>` : ''}
         </div>
       </article>`;
     }).join('');

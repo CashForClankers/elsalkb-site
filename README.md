@@ -1,13 +1,11 @@
 # ElSalKB Site
 
-Static site export for the ElSalKB trip knowledge base.
+Public static site export for a sanitized El Salvador knowledge base.
 
 ## Deploy
 
-This repo is GitHub Pages ready. Push to `main`, then enable Pages from the repository root.
+Push to `main`, then GitHub Pages serves the repo root.
 
-## Notes
+## Safety
 
-- Source data is exported from the local ElSalKB SQLite database.
-- Site is intentionally static: no auth, no backend, no paid infra.
-- Frontend is plain HTML/CSS/JS for easy maintenance.
+This public repo should contain only static, public-safe content.
